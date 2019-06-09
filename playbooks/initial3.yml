@@ -1,0 +1,29 @@
+---
+- name: Remote Control DNS
+  hosts: all
+  remote_user: ansible
+  become: yes
+  
+  tasks:
+  - name: Configure NetworkManager
+    template: 
+      src: /ansible/templates/NetworkManager.conf.j2
+      dest: /etc/NetworkManager/NetworkManager.conf
+    notify: restart NetworkManager
+ 
+  - name: Configure Network Dns
+    template: 
+      src: /ansible/templates/resolv.conf.j2 
+      dest: /etc/resolv.conf.j2
+    notify: restart network
+
+   
+  handlers:
+    - name: restart NetworkManager
+      service:
+        name: NetworkManager
+        state: restarted
+    - name: restart network
+      service:
+        name: network
+        state: restarted

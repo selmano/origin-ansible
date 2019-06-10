@@ -1,8 +1,6 @@
 ---
 # handlers file for MariaDB
 - name: yum-clean-all
-  command:
-    - yum clean all
-    - yum repolist
+  command: yum clean metadata
   args:
     warn: no

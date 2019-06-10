@@ -1,0 +1,22 @@
+---
+# tasks file for MariaDB
+
+- name: deliver repo file
+  templates:
+    src: templates/MariaDB.repo.j2
+    dest: /etc/yum.repos.d/MariaDB.repo 
+  notify: yum-clean-all
+
+- name: install MariaDB-server and MariaDB-client
+  yum:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - MariaDB-server
+    - MariaDB-client
+
+- name: start and enable MariaDB
+  service:
+    name: mariadb
+    state: started
+    enabled: true

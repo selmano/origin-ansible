@@ -1,8 +1,8 @@
 ---
   - name: use MariaDb role playbook
-    hosts: webo1
+    hosts: web01
     user: ansible
     become: yes
 
     roles:
-      - MariaDB 
+      - MariaDB

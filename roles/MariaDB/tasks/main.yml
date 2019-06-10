@@ -2,9 +2,9 @@
 # tasks file for MariaDB
 
 - name: deliver repo file
-  templates:
+  template:
     src: templates/MariaDB.repo.j2
-    dest: /etc/yum.repos.d/MariaDB.repo 
+    dest: /etc/yum.repos.d/MariaDB.repo
   notify: yum-clean-all
 
 - name: install MariaDB-server and MariaDB-client
